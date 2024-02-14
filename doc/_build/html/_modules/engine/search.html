@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>engine.search &mdash; AptusBio 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=af2ce170"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AptusBio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Aptus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AptusBio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">engine.search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for engine.search</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<div class="viewcode-block" id="SearchClient"><a class="viewcode-back" href="../../engine.html#engine.search.SearchClient">[docs]</a><span class="k">class</span> <span class="nc">SearchClient</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
+
+<div class="viewcode-block" id="SearchClient.search"><a class="viewcode-back" href="../../engine.html#engine.search.SearchClient.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text_file_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">user_inquiry</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/search&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;text_file_path&quot;</span><span class="p">:</span> <span class="n">text_file_path</span><span class="p">,</span>
+            <span class="s2">&quot;azure_deployment_embed&quot;</span><span class="p">:</span> <span class="n">azure_deployment_embed</span><span class="p">,</span>
+            <span class="s2">&quot;azure_deployment_llm&quot;</span><span class="p">:</span> <span class="n">azure_deployment_llm</span><span class="p">,</span>
+            <span class="s2">&quot;user_inquiry&quot;</span><span class="p">:</span> <span class="n">user_inquiry</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;answer&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search request failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SearchClient.interactive_session"><a class="viewcode-back" href="../../engine.html#engine.search.SearchClient.interactive_session">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">interactive_session</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">text_file_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">):</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter your questions. Type &#39;quit&#39; to exit.&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">user_inquiry</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your question: &quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">user_inquiry</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quit&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting...&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">text_file_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">user_inquiry</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Answer:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+<span class="c1"># Simplified usage</span>
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+<span class="c1">#     base_url = &quot;http://localhost:5035&quot;</span>
+<span class="c1">#     text_file_path = &quot;/Users/mvenkatesh/Desktop/aptus/synthea_sample_data_fhir_latest/Abby752_Rowe323_b728d428-0526-5fcb-bdd7-04bb48323b9f.txt&quot;</span>
+<span class="c1">#     azure_deployment_embed = &quot;aptus_embed_demo&quot;</span>
+<span class="c1">#     azure_deployment_llm = &quot;aptus35&quot;</span>
+<span class="c1">#     SearchClient.interactive_session(base_url, text_file_path, azure_deployment_embed, azure_deployment_llm)</span>
+
+<span class="c1"># SearchClient.interactive_session(&quot;http://localhost:5035&quot;, &quot;/path/to/text_file.txt&quot;, &quot;azure_deployment_embed_name&quot;, &quot;azure_deployment_llm_name&quot;)</span>
+
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<div class="viewcode-block" id="RepoSearchClient"><a class="viewcode-back" href="../../engine.html#engine.search.RepoSearchClient">[docs]</a><span class="k">class</span> <span class="nc">RepoSearchClient</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
+
+<div class="viewcode-block" id="RepoSearchClient.search"><a class="viewcode-back" href="../../engine.html#engine.search.RepoSearchClient.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">user_inquiry</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a search operation by sending a POST request to the /repo_search endpoint.</span>
+
+<span class="sd">        :param folder_path: Path to the folder containing text files to be analyzed.</span>
+<span class="sd">        :param azure_deployment_embed: Azure deployment name for embeddings.</span>
+<span class="sd">        :param azure_deployment_llm: Azure deployment name for language model operations.</span>
+<span class="sd">        :param user_inquiry: The user&#39;s inquiry/question.</span>
+<span class="sd">        :return: The search result.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/repo_search&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;folder_path&quot;</span><span class="p">:</span> <span class="n">folder_path</span><span class="p">,</span>
+            <span class="s2">&quot;azure_deployment_embed&quot;</span><span class="p">:</span> <span class="n">azure_deployment_embed</span><span class="p">,</span>
+            <span class="s2">&quot;azure_deployment_llm&quot;</span><span class="p">:</span> <span class="n">azure_deployment_llm</span><span class="p">,</span>
+            <span class="s2">&quot;user_inquiry&quot;</span><span class="p">:</span> <span class="n">user_inquiry</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;answer&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search request failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RepoSearchClient.interactive_session"><a class="viewcode-back" href="../../engine.html#engine.search.RepoSearchClient.interactive_session">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">interactive_session</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Starts an interactive session that allows the user to ask questions in a loop.</span>
+
+<span class="sd">        :param base_url: The base URL of the application providing the search functionality.</span>
+<span class="sd">        :param folder_path: Path to the folder containing text files to be analyzed.</span>
+<span class="sd">        :param azure_deployment_embed: Azure deployment name for embeddings.</span>
+<span class="sd">        :param azure_deployment_llm: Azure deployment name for language model operations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter your questions. Type &#39;quit&#39; to exit.&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">user_inquiry</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your question: &quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">user_inquiry</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quit&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting...&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">user_inquiry</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Answer:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+
+<span class="c1"># # Example usage</span>
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+<span class="c1">#     base_url = &quot;http://localhost:5036</span>
+<span class="c1">#     folder_path = &quot;/Users/mvenkatesh/Desktop/aptus/study_materials_dir&quot;</span>
+<span class="c1">#     azure_deployment_embed = &quot;aptus_embed_demo&quot;</span>
+<span class="c1">#     azure_deployment_llm = &quot;aptus35&quot;</span>
+<span class="c1">#     RepoSearchClient.interactive_session(base_url, folder_path, azure_deployment_embed, azure_deployment_llm)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rahul Ravishankar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
