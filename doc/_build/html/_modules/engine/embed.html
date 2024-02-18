@@ -19,7 +19,9 @@
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,11 +43,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Aptus</a></li>
-</ul>
-
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
         </div>
       </div>
     </nav>
@@ -72,95 +71,66 @@
              
   <h1>Source code for engine.embed</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">json</span>
 
 <div class="viewcode-block" id="RepoEmbedClient"><a class="viewcode-back" href="../../engine.html#engine.embed.RepoEmbedClient">[docs]</a><span class="k">class</span> <span class="nc">RepoEmbedClient</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the client with the base URL of the embedding and annotation service.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;http://aptus.bio&quot;</span>  <span class="c1"># Hardcoded base URL</span>
 
-<div class="viewcode-block" id="RepoEmbedClient.annotate_documents"><a class="viewcode-back" href="../../engine.html#engine.embed.RepoEmbedClient.annotate_documents">[docs]</a>    <span class="k">def</span> <span class="nf">annotate_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aptus_token</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Annotates documents within the specified folder using embeddings and language model operations.</span>
+<span class="sd">        Initializes the client with the aptus_token for authentication.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aptus_token</span> <span class="o">=</span> <span class="n">aptus_token</span>
+
+<div class="viewcode-block" id="RepoEmbedClient.annotate"><a class="viewcode-back" href="../../engine.html#engine.embed.RepoEmbedClient.annotate">[docs]</a>    <span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">lab_repo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Annotates documents or patient records within the specified folder.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            folder_path (str): The path to the folder containing the documents to be annotated.</span>
-<span class="sd">            azure_deployment_embed (str): The name of the Azure deployment for embeddings.</span>
-<span class="sd">            azure_deployment_llm (str): The name of the Azure deployment for language model operations.</span>
-<span class="sd">            output_path (str): The path where annotated documents should be saved.</span>
+<span class="sd">            folder_path (str): Path to the folder containing the documents or patient records.</span>
+<span class="sd">            output_path (str): Path where the annotated documents or patient records should be saved.</span>
+<span class="sd">            lab_repo (str, optional): The lab repository to use for additional context in patient record annotations. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/annotate_documents&quot;</span>
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/annotate_patient&quot;</span> <span class="k">if</span> <span class="n">lab_repo</span> <span class="k">else</span> <span class="s2">&quot;/annotate_documents&quot;</span>
         <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;folder_path&quot;</span><span class="p">:</span> <span class="n">folder_path</span><span class="p">,</span>
-            <span class="s2">&quot;azure_deployment_embed&quot;</span><span class="p">:</span> <span class="n">azure_deployment_embed</span><span class="p">,</span>
-            <span class="s2">&quot;azure_deployment_llm&quot;</span><span class="p">:</span> <span class="n">azure_deployment_llm</span><span class="p">,</span>
-            <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span>
+            <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span><span class="p">,</span>
+            <span class="s2">&quot;aptus_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">aptus_token</span><span class="p">,</span>  <span class="c1"># Use aptus_token for authentication</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Documents successfully annotated and saved to:&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annotation request failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">lab_repo</span><span class="p">:</span>  <span class="c1"># Add lab_repo to payload if annotating patient records</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;lab_repo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lab_repo</span>
 
-<div class="viewcode-block" id="RepoEmbedClient.annotate_patient"><a class="viewcode-back" href="../../engine.html#engine.embed.RepoEmbedClient.annotate_patient">[docs]</a>    <span class="k">def</span> <span class="nf">annotate_patient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">lab_repo</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Annotates patient records within the specified folder using embeddings and language model operations,</span>
-<span class="sd">        incorporating lab repository data.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            folder_path (str): The path to the folder containing the patient records to be annotated.</span>
-<span class="sd">            azure_deployment_embed (str): The name of the Azure deployment for embeddings.</span>
-<span class="sd">            azure_deployment_llm (str): The name of the Azure deployment for language model operations.</span>
-<span class="sd">            lab_repo (str): The lab repository to use for additional context in annotations.</span>
-<span class="sd">            output_path (str): The path where annotated patient records should be saved.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/annotate_patient&quot;</span>
-        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;folder_path&quot;</span><span class="p">:</span> <span class="n">folder_path</span><span class="p">,</span>
-            <span class="s2">&quot;azure_deployment_embed&quot;</span><span class="p">:</span> <span class="n">azure_deployment_embed</span><span class="p">,</span>
-            <span class="s2">&quot;azure_deployment_llm&quot;</span><span class="p">:</span> <span class="n">azure_deployment_llm</span><span class="p">,</span>
-            <span class="s2">&quot;lab_repo&quot;</span><span class="p">:</span> <span class="n">lab_repo</span><span class="p">,</span>
-            <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span>
-        <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Patient records successfully annotated and saved to:&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Success: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Documents successfully annotated&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annotation request failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RepoEmbedClient.interactive_session"><a class="viewcode-back" href="../../engine.html#engine.embed.RepoEmbedClient.interactive_session">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">interactive_session</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">base_url</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">interactive_session</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">aptus_token</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starts an interactive session for annotating documents or patient records.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            base_url (str): The base URL of the application providing the annotation functionality.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">aptus_token</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interactive session started. Type &#39;quit&#39; to exit.&quot;</span><span class="p">)</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Choose action (annotate_documents, annotate_patient, quit): &quot;</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Choose action (1 for documents, 2 for patient records, quit): &quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quit&#39;</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting...&quot;</span><span class="p">)</span>
                 <span class="k">break</span>
-            <span class="k">elif</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;annotate_documents&#39;</span><span class="p">,</span> <span class="s1">&#39;annotate_patient&#39;</span><span class="p">]:</span>
-                <span class="n">folder_path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter folder path: &quot;</span><span class="p">)</span>
-                <span class="n">azure_deployment_embed</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter Azure deployment name for embeddings: &quot;</span><span class="p">)</span>
-                <span class="n">azure_deployment_llm</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter Azure deployment name for language model operations: &quot;</span><span class="p">)</span>
-                <span class="n">output_path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter output path: &quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;annotate_patient&#39;</span><span class="p">:</span>
-                    <span class="n">lab_repo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter lab repository: &quot;</span><span class="p">)</span>
-                    <span class="bp">cls</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span><span class="o">.</span><span class="n">annotate_patient</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">lab_repo</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">cls</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span><span class="o">.</span><span class="n">annotate_documents</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">azure_deployment_embed</span><span class="p">,</span> <span class="n">azure_deployment_llm</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+            <span class="n">folder_path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter folder path: &quot;</span><span class="p">)</span>
+            <span class="n">output_path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter output path: &quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+                <span class="n">lab_repo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter lab repository: &quot;</span><span class="p">)</span>
+                <span class="n">client</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">lab_repo</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">client</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid action. Please choose &#39;annotate_documents&#39;, &#39;annotate_patient&#39;, or &#39;quit&#39;.&quot;</span><span class="p">)</span></div></div>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid action. Please choose 1 for documents, 2 for patient records, or type &#39;quit&#39;.&quot;</span><span class="p">)</span></div></div>
 
-<span class="c1">#  usage</span>
+<span class="c1"># Example usage</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:5000&quot;</span>
-    <span class="n">RepoEmbedClient</span><span class="o">.</span><span class="n">interactive_session</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+    <span class="n">aptus_token</span> <span class="o">=</span> <span class="s2">&quot;your_aptus_token_here&quot;</span>
+    <span class="n">RepoEmbedClient</span><span class="o">.</span><span class="n">interactive_session</span><span class="p">(</span><span class="n">aptus_token</span><span class="p">)</span>
 </pre></div>
 
            </div>
