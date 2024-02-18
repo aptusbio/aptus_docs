@@ -21,6 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="engine package" href="engine.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -44,30 +45,27 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">helpers package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-helpers.fhir_extraction">helpers.fhir_extraction module</a><ul>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor</span></code></a><ul>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.MyHTMLParser"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.MyHTMLParser</span></code></a><ul>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.MyHTMLParser.get_data"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.MyHTMLParser.get_data()</span></code></a></li>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.MyHTMLParser.handle_data"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.MyHTMLParser.handle_data()</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Aptus</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="engine.html">engine package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">helpers package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-helpers.check_files">helpers.check_files module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#helpers.check_files.check_files"><code class="docutils literal notranslate"><span class="pre">check_files()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.decode_base64"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.decode_base64()</span></code></a></li>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.ensure_output_directory"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.ensure_output_directory()</span></code></a></li>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.extract_text"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.extract_text()</span></code></a></li>
-<li><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor.process_files"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor.process_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-helpers.fhir_extraction">helpers.fhir_extraction module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#helpers.fhir_extraction.FHIRTextExtractor"><code class="docutils literal notranslate"><span class="pre">FHIRTextExtractor</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-helpers">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-helpers">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -82,6 +80,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Aptus</a></li>
       <li class="breadcrumb-item active">helpers package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/helpers.rst.txt" rel="nofollow"> View page source</a>
@@ -96,6 +95,14 @@
 <h1>helpers package<a class="headerlink" href="#helpers-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-helpers.check_files">
+<span id="helpers-check-files-module"></span><h2>helpers.check_files module<a class="headerlink" href="#module-helpers.check_files" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="helpers.check_files.check_files">
+<span class="sig-prename descclassname"><span class="pre">helpers.check_files.</span></span><span class="sig-name descname"><span class="pre">check_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpers/check_files.html#check_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helpers.check_files.check_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="module-helpers.fhir_extraction">
 <span id="helpers-fhir-extraction-module"></span><h2>helpers.fhir_extraction module<a class="headerlink" href="#module-helpers.fhir_extraction" title="Permalink to this heading"></a></h2>
@@ -155,7 +162,9 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="engine.html" class="btn btn-neutral float-left" title="engine package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

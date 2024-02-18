@@ -4,6 +4,14 @@ helpers package
 Submodules
 ----------
 
+helpers.check\_files module
+---------------------------
+
+.. automodule:: helpers.check_files
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 helpers.fhir\_extraction module
 -------------------------------
 

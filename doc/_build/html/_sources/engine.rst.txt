@@ -12,6 +12,14 @@ engine.embed module
    :undoc-members:
    :show-inheritance:
 
+engine.meta\_discovery module
+-----------------------------
+
+.. automodule:: engine.meta_discovery
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 engine.search module
 --------------------
 

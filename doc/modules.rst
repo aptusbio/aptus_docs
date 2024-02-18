@@ -1,3 +1,6 @@
+Aptus
+=====
+
 .. toctree::
    :maxdepth: 4
 
