@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>helpers.html_txt &mdash; AptusBio 1.0.0 documentation</title>
+  <title>helpers.html_txt &mdash; AptusBio 1.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=af2ce170"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=0b546569"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -97,17 +97,17 @@
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HTML content successfully converted and saved as plain text in </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<span class="c1"># Example usage:</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">html_file</span> <span class="o">=</span> <span class="s2">&quot;example.html&quot;</span>  <span class="c1"># Path to the HTML file</span>
-    <span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span>  <span class="c1"># Desired output directory</span>
+<span class="c1"># # Example usage:</span>
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+<span class="c1">#     html_file = &quot;example.html&quot;  # Path to the HTML file</span>
+<span class="c1">#     output_dir = &quot;output&quot;  # Desired output directory</span>
 
-    <span class="c1"># Create the output directory if it doesn&#39;t exist</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+<span class="c1">#     # Create the output directory if it doesn&#39;t exist</span>
+<span class="c1">#     if not os.path.exists(output_dir):</span>
+<span class="c1">#         os.makedirs(output_dir)</span>
 
-    <span class="c1"># Convert HTML to text and save to the specified directory</span>
-    <span class="n">html_to_text</span><span class="p">(</span><span class="n">html_file</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">)</span>
+<span class="c1">#     # Convert HTML to text and save to the specified directory</span>
+<span class="c1">#     html_to_text(html_file, output_dir)</span>
 </pre></div>
 
            </div>
