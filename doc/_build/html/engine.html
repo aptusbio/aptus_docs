@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>engine package &mdash; AptusBio 1.0.0 documentation</title>
+  <title>engine package &mdash; AptusBio 1.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=af2ce170"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=0b546569"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
@@ -51,18 +51,25 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Aptus</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">engine package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-engine.embed">engine.embed module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#engine.embed.RepoEmbedClient"><code class="docutils literal notranslate"><span class="pre">RepoEmbedClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-engine.answer_messages">engine.answer_messages module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#engine.answer_messages.AnswerMessages"><code class="docutils literal notranslate"><span class="pre">AnswerMessages</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-engine.config">engine.config module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-engine.document_draft">engine.document_draft module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#engine.document_draft.DocumentDraft"><code class="docutils literal notranslate"><span class="pre">DocumentDraft</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-engine.embed_search">engine.embed_search module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#engine.embed_search.EmbedSearch"><code class="docutils literal notranslate"><span class="pre">EmbedSearch</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-engine.meta_discovery">engine.meta_discovery module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#engine.meta_discovery.RepoEmbedClient"><code class="docutils literal notranslate"><span class="pre">RepoEmbedClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#engine.meta_discovery.MetaDiscovery"><code class="docutils literal notranslate"><span class="pre">MetaDiscovery</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-engine.search">engine.search module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#engine.search.BaseSearchClient"><code class="docutils literal notranslate"><span class="pre">BaseSearchClient</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#engine.search.RepoSearchClient"><code class="docutils literal notranslate"><span class="pre">RepoSearchClient</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#engine.search.SearchClient"><code class="docutils literal notranslate"><span class="pre">SearchClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-engine.screen_candidate">engine.screen_candidate module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#engine.screen_candidate.ScreenCandidate"><code class="docutils literal notranslate"><span class="pre">ScreenCandidate</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-engine">Module contents</a></li>
@@ -103,33 +110,79 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-engine.embed">
-<span id="engine-embed-module"></span><h2>engine.embed module<a class="headerlink" href="#module-engine.embed" title="Permalink to this heading"></a></h2>
+<section id="module-engine.answer_messages">
+<span id="engine-answer-messages-module"></span><h2>engine.answer_messages module<a class="headerlink" href="#module-engine.answer_messages" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="engine.embed.RepoEmbedClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.embed.</span></span><span class="sig-name descname"><span class="pre">RepoEmbedClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/embed.html#RepoEmbedClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.embed.RepoEmbedClient" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="engine.answer_messages.AnswerMessages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.answer_messages.</span></span><span class="sig-name descname"><span class="pre">AnswerMessages</span></span><a class="reference internal" href="_modules/engine/answer_messages.html#AnswerMessages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.answer_messages.AnswerMessages" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="engine.embed.RepoEmbedClient.BASE_URL">
-<span class="sig-name descname"><span class="pre">BASE_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'http://aptus.bio'</span></em><a class="headerlink" href="#engine.embed.RepoEmbedClient.BASE_URL" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<p>A class to interact with the answer messages API.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="engine.embed.RepoEmbedClient.annotate">
-<span class="sig-name descname"><span class="pre">annotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lab_repo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/embed.html#RepoEmbedClient.annotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.embed.RepoEmbedClient.annotate" title="Permalink to this definition"></a></dt>
-<dd><p>Annotates documents or patient records within the specified folder.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>folder_path (str): Path to the folder containing the documents or patient records.
-output_path (str): Path where the annotated documents or patient records should be saved.
-lab_repo (str, optional): The lab repository to use for additional context in patient record annotations. Defaults to None.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="engine.answer_messages.AnswerMessages.process_questions">
+<span class="sig-name descname"><span class="pre">process_questions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv_file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/answer_messages.html#AnswerMessages.process_questions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.answer_messages.AnswerMessages.process_questions" title="Permalink to this definition"></a></dt>
+<dd><p>Processes questions using the provided directory path, CSV file path, and output CSV file path.</p>
+<p>Parameters:
+- directory_path (str): The directory path containing question files.
+- csv_file_path (str): The path to the CSV file containing questions.
+- output_csv_file_path (str): The path to save the output CSV file.</p>
+<p>Returns:
+- dict: A dictionary containing the response message.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-engine.config">
+<span id="engine-config-module"></span><h2>engine.config module<a class="headerlink" href="#module-engine.config" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-engine.document_draft">
+<span id="engine-document-draft-module"></span><h2>engine.document_draft module<a class="headerlink" href="#module-engine.document_draft" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="engine.document_draft.DocumentDraft">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.document_draft.</span></span><span class="sig-name descname"><span class="pre">DocumentDraft</span></span><a class="reference internal" href="_modules/engine/document_draft.html#DocumentDraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.document_draft.DocumentDraft" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to interact with the document draft API.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="engine.document_draft.DocumentDraft.generate_discovery">
+<span class="sig-name descname"><span class="pre">generate_discovery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/document_draft.html#DocumentDraft.generate_discovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.document_draft.DocumentDraft.generate_discovery" title="Permalink to this definition"></a></dt>
+<dd><p>Initiates the discovery generation process.</p>
+<p>Parameters:
+- folder_path (str): The path to the folder containing documents for discovery.
+- output_csv_path (str): The path to save the output CSV file.</p>
+<p>Returns:
+- dict: A dictionary containing the response message.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="engine.embed.RepoEmbedClient.interactive_session">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interactive_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/embed.html#RepoEmbedClient.interactive_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.embed.RepoEmbedClient.interactive_session" title="Permalink to this definition"></a></dt>
-<dd><p>Starts an interactive session for annotating documents or patient records.</p>
+<dt class="sig sig-object py" id="engine.document_draft.DocumentDraft.generate_draft">
+<span class="sig-name descname"><span class="pre">generate_draft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append_directory_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/document_draft.html#DocumentDraft.generate_draft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.document_draft.DocumentDraft.generate_draft" title="Permalink to this definition"></a></dt>
+<dd><p>Initiates the draft generation process.</p>
+<p>Parameters:
+- directory_path (str): The path to the directory containing documents for draft generation.
+- output_file_path (str): The path to save the output file.
+- append_directory_path (str): The path to the directory where additional documents are stored.</p>
+<p>Returns:
+- dict: A dictionary containing the response message.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-engine.embed_search">
+<span id="engine-embed-search-module"></span><h2>engine.embed_search module<a class="headerlink" href="#module-engine.embed_search" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="engine.embed_search.EmbedSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.embed_search.</span></span><span class="sig-name descname"><span class="pre">EmbedSearch</span></span><a class="reference internal" href="_modules/engine/embed_search.html#EmbedSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.embed_search.EmbedSearch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to interact with the embedded search API.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="engine.embed_search.EmbedSearch.search">
+<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/embed_search.html#EmbedSearch.search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.embed_search.EmbedSearch.search" title="Permalink to this definition"></a></dt>
+<dd><p>Performs a search operation.</p>
+<p>Parameters:
+- query (str): The search query string.</p>
+<p>Returns:
+- dict: A dictionary containing the search answer or message.</p>
 </dd></dl>
 
 </dd></dl>
@@ -138,66 +191,42 @@ lab_repo (str, optional): The lab repository to use for additional context in pa
 <section id="module-engine.meta_discovery">
 <span id="engine-meta-discovery-module"></span><h2>engine.meta_discovery module<a class="headerlink" href="#module-engine.meta_discovery" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="engine.meta_discovery.RepoEmbedClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.meta_discovery.</span></span><span class="sig-name descname"><span class="pre">RepoEmbedClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/meta_discovery.html#RepoEmbedClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.meta_discovery.RepoEmbedClient" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="engine.meta_discovery.MetaDiscovery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.meta_discovery.</span></span><span class="sig-name descname"><span class="pre">MetaDiscovery</span></span><a class="reference internal" href="_modules/engine/meta_discovery.html#MetaDiscovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.meta_discovery.MetaDiscovery" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="engine.meta_discovery.RepoEmbedClient.BASE_URL">
-<span class="sig-name descname"><span class="pre">BASE_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'http://aptus.bio'</span></em><a class="headerlink" href="#engine.meta_discovery.RepoEmbedClient.BASE_URL" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<p>A class to interact with the meta discovery API.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="engine.meta_discovery.RepoEmbedClient.fetch_meta_data">
-<span class="sig-name descname"><span class="pre">fetch_meta_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/meta_discovery.html#RepoEmbedClient.fetch_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.meta_discovery.RepoEmbedClient.fetch_meta_data" title="Permalink to this definition"></a></dt>
-<dd><p>Fetches metadata for a given subject ID from the /meta endpoint.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="engine.meta_discovery.RepoEmbedClient.generate_cohort_csv">
-<span class="sig-name descname"><span class="pre">generate_cohort_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/meta_discovery.html#RepoEmbedClient.generate_cohort_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.meta_discovery.RepoEmbedClient.generate_cohort_csv" title="Permalink to this definition"></a></dt>
-<dd><p>Generates a CSV file from metadata fetched for each subject using the /meta endpoint.</p>
+<dt class="sig sig-object py" id="engine.meta_discovery.MetaDiscovery.generate_discovery">
+<span class="sig-name descname"><span class="pre">generate_discovery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_csv_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/meta_discovery.html#MetaDiscovery.generate_discovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.meta_discovery.MetaDiscovery.generate_discovery" title="Permalink to this definition"></a></dt>
+<dd><p>Initiates the discovery generation process.</p>
+<p>Parameters:
+- folder_path (str): The path to the folder containing documents for discovery.
+- output_csv_path (str): The path to save the output CSV file.</p>
+<p>Returns:
+- dict: A dictionary containing the response message.</p>
 </dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-engine.search">
-<span id="engine-search-module"></span><h2>engine.search module<a class="headerlink" href="#module-engine.search" title="Permalink to this heading"></a></h2>
+<section id="module-engine.screen_candidate">
+<span id="engine-screen-candidate-module"></span><h2>engine.screen_candidate module<a class="headerlink" href="#module-engine.screen_candidate" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="engine.search.BaseSearchClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.search.</span></span><span class="sig-name descname"><span class="pre">BaseSearchClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#BaseSearchClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.BaseSearchClient" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="engine.screen_candidate.ScreenCandidate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.screen_candidate.</span></span><span class="sig-name descname"><span class="pre">ScreenCandidate</span></span><a class="reference internal" href="_modules/engine/screen_candidate.html#ScreenCandidate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.screen_candidate.ScreenCandidate" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to interact with the screen candidate API.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="engine.search.BaseSearchClient.interactive_session">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interactive_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#BaseSearchClient.interactive_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.BaseSearchClient.interactive_session" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="engine.search.BaseSearchClient.post_request">
-<span class="sig-name descname"><span class="pre">post_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#BaseSearchClient.post_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.BaseSearchClient.post_request" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<dt class="sig sig-object py" id="engine.screen_candidate.ScreenCandidate.generate_screening">
+<span class="sig-name descname"><span class="pre">generate_screening</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append_directory_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/screen_candidate.html#ScreenCandidate.generate_screening"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.screen_candidate.ScreenCandidate.generate_screening" title="Permalink to this definition"></a></dt>
+<dd><p>Initiates the screening generation process.</p>
+<p>Parameters:
+- directory_path (str): The path to the directory containing documents for screening.
+- output_file_path (str): The path to save the output file.
+- append_directory_path (str): The path to the directory where additional documents are stored.</p>
+<p>Returns:
+- dict: A dictionary containing the response message.</p>
 </dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="engine.search.RepoSearchClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.search.</span></span><span class="sig-name descname"><span class="pre">RepoSearchClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#RepoSearchClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.RepoSearchClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#engine.search.BaseSearchClient" title="engine.search.BaseSearchClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSearchClient</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="engine.search.RepoSearchClient.interactive_session">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interactive_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#RepoSearchClient.interactive_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.RepoSearchClient.interactive_session" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="engine.search.SearchClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">engine.search.</span></span><span class="sig-name descname"><span class="pre">SearchClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#SearchClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.SearchClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#engine.search.BaseSearchClient" title="engine.search.BaseSearchClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSearchClient</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="engine.search.SearchClient.interactive_session">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interactive_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aptus_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/engine/search.html#SearchClient.interactive_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#engine.search.SearchClient.interactive_session" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

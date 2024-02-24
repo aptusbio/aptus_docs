@@ -4,10 +4,34 @@ engine package
 Submodules
 ----------
 
-engine.embed module
--------------------
+engine.answer\_messages module
+------------------------------
 
-.. automodule:: engine.embed
+.. automodule:: engine.answer_messages
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+engine.config module
+--------------------
+
+.. automodule:: engine.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+engine.document\_draft module
+-----------------------------
+
+.. automodule:: engine.document_draft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+engine.embed\_search module
+---------------------------
+
+.. automodule:: engine.embed_search
    :members:
    :undoc-members:
    :show-inheritance:
@@ -20,10 +44,10 @@ engine.meta\_discovery module
    :undoc-members:
    :show-inheritance:
 
-engine.search module
---------------------
+engine.screen\_candidate module
+-------------------------------
 
-.. automodule:: engine.search
+.. automodule:: engine.screen_candidate
    :members:
    :undoc-members:
    :show-inheritance:

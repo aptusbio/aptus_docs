@@ -20,6 +20,14 @@ helpers.fhir\_extraction module
    :undoc-members:
    :show-inheritance:
 
+helpers.html\_txt module
+------------------------
+
+.. automodule:: helpers.html_txt
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
