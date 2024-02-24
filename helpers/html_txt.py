@@ -22,14 +22,14 @@ def html_to_text(html_file, output_dir):
 
     print(f"HTML content successfully converted and saved as plain text in {output_file}")
 
-# Example usage:
-if __name__ == "__main__":
-    html_file = "example.html"  # Path to the HTML file
-    output_dir = "output"  # Desired output directory
+# # Example usage:
+# if __name__ == "__main__":
+#     html_file = "example.html"  # Path to the HTML file
+#     output_dir = "output"  # Desired output directory
 
-    # Create the output directory if it doesn't exist
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+#     # Create the output directory if it doesn't exist
+#     if not os.path.exists(output_dir):
+#         os.makedirs(output_dir)
 
-    # Convert HTML to text and save to the specified directory
-    html_to_text(html_file, output_dir)
+#     # Convert HTML to text and save to the specified directory
+#     html_to_text(html_file, output_dir)
